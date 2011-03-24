@@ -976,9 +976,21 @@ SET(TRACE_PBJ_CPP_FILES ${TRACE_PBJ_CPP_FILES} ${TRACE_CORE_PBJ_CPP_FILES})
 
 
 #IF(V8_FOUND)
-  SET(JS_ProtocolBuffersSources JSMessage)
+ADD_PBJ_TARGET(
+  ${ProtocolBuffersSourcesCore}
+  PLUGINNAME "JS"
+  IMPORTS ${ProtocolBuffersRoot}
+  OUTPUTDIR ${SirikataProtocolDirectory}
+  GENERATED_CPP_FILES JS_CORE_PBJ_CPP_FILES
+  CPP_HEADER ${PROTOCOLBUFFERS_CPP_HEADER}
+  #EXPORTMACRO SIRIKATA_EXPORT
+  GENERATE_CPP
+)
+
+  SET(JS_ProtocolBuffersSources JSMessage EntityPersistence)
   ADD_PBJ_TARGET(${JS_ProtocolBuffersSources}
     INPUTDIR ${ProtocolBuffersRoot}
+    DEPENDS ${JS_CORE_PBJ_CPP_FILES}
     PLUGINNAME "JS"
     IMPORTS ${ProtocolBuffersRoot}
     OUTPUTDIR ${SirikataProtocolDirectory}
@@ -986,6 +998,7 @@ SET(TRACE_PBJ_CPP_FILES ${TRACE_PBJ_CPP_FILES} ${TRACE_CORE_PBJ_CPP_FILES})
     CPP_HEADER ${PROTOCOLBUFFERS_CPP_HEADER}
     ${PROTOCOLBUFFERS_GENS}
     )
+
 #ENDIF(V8_FOUND)
 
 # For scripting

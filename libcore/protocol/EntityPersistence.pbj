@@ -1,0 +1,29 @@
+"pbj-0.0.3"
+
+
+import "TimedMotionVector.pbj";
+import "TimedMotionQuaternion.pbj";
+
+package Sirikata.EntityPersistence;
+
+message PerPresenceData
+{
+  required string spaceid = 1;
+  required string objectref = 2;
+  required string mesh = 3;
+  required Sirikata.Protocol.TimedMotionVector location = 4; 
+}
+
+message ScriptData
+{
+
+  required string script_text = 1;
+}
+
+message PersistedEntity
+{
+  repeated PerPresenceData presences_data = 1;
+  optional ScriptData script_data = 2;
+}
+
+
