@@ -60,7 +60,7 @@ function() {
 
     ns.rotate = function(pres) {
         if (arguments.length == 2) { // quaternion
-            pres.setOrientationVel(arguments[1]);
+            pres.setOrientationVel(orient);
         }
         else if (arguments.length == 3) { // axis-angle
             var about = arguments[1];
